@@ -18,7 +18,7 @@ byte tarjeta4[4] = { 0xC0, 0x7C, 0xC1, 0x80 };
 char str[32] = "";
 int cont = 0;
 bool solouno = true;
-bool leo;
+bool leo= true;
 bool Estado = true;
 bool Estado2 = true;
 void setup() {
@@ -31,16 +31,22 @@ void setup() {
 unsigned long previousMillis = 0;
 unsigned long interval = 1000;
 void loop() {
-  if (Serial.available())
+if (Serial.available())
   {
     String opcion = Serial.readStringUntil('\n');
     if(opcion=="c"){
+      Serial.println("Check");
       check();
-    }else if(opcion=="l"){
+      
+    }if(opcion=="l"){
+      Serial.println("Lector");
       lector();
     }
+    
   }
 
+
+  
 }
 //*****************************************************************************************************************************************
 void array_to_string(byte array[], unsigned int len, char buffer[])
@@ -66,14 +72,12 @@ bool entrada_salida(String str) {
 }
 //============================================================================================================================================
 void check() {
-
-  if (Serial.available())
-  {
+  Serial.print("ingrese credencial");
+    while(Serial.available() == 0){}
     String credencial = Serial.readStringUntil('\n');
     solouno = true;
+    Serial.println(credencial);
     while (credencial == "si") {
-
-
       if (solouno == true) {
         // Detectar tarjeta
         if (mfrc522.PICC_IsNewCardPresent())
@@ -111,14 +115,14 @@ void check() {
 
     }
 
-  }
+  
 
 }
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 void lector() {
-
-  leo = true;
-  if (leo == true) {
+  Serial.print("su tajeta");
+   leo=true;
+  while(leo == true) {
     // Detectar tarjeta
     if (mfrc522.PICC_IsNewCardPresent())
     {
