@@ -52,6 +52,7 @@ if(currentMillis - previousMillis > interval) {
       array_to_string(mfrc522.uid.uidByte, 4, str);
       Serial.print(str);
       Serial.print(" ");
+      Serial.println(" ");
       Estado=entrada_salida(str);
       if(Estado==false){
         Serial.println("Salida");
