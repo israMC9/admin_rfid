@@ -43,10 +43,7 @@ if (Serial.available())
       lector();
     }
     
-  }
-
-
-  
+  } 
 }
 //*****************************************************************************************************************************************
 void array_to_string(byte array[], unsigned int len, char buffer[])
@@ -72,12 +69,12 @@ bool entrada_salida(String str) {
 }
 //============================================================================================================================================
 void check() {
-  Serial.print("ingrese credencial");
+  Serial.println("ingrese credencialal es correcta y/n");
     while(Serial.available() == 0){}
     String credencial = Serial.readStringUntil('\n');
     solouno = true;
     Serial.println(credencial);
-    while (credencial == "si") {
+    while (credencial == "y") {
       if (solouno == true) {
         // Detectar tarjeta
         if (mfrc522.PICC_IsNewCardPresent())
@@ -110,7 +107,7 @@ void check() {
           solouno = false;
         }
       } else {
-        credencial = "no";
+        credencial = "n";
       }
 
     }
