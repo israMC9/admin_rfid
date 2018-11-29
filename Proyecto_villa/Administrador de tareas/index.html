@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="estilo.css" rel="stylesheet" type="text/css">    
+    <meta charset="UTF-8">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="vue.min.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <div class="principal">
+            <div class="wrap"> 
+                <h1>FIFO</h1>
+                <input placeholder="Nombre" v-model="name">
+                <input placeholder="Tiempo Llegada" v-model.number="timecoming">
+                <input placeholder="Tiempo total" v-model.number="timetotal">
+                <input placeholder="Lista" v-model="list">
+                <select v-model.number="prioridad">
+                    <option value="1">Uno</option>   
+                    <option value="2">Dos</option>
+                    <option value="3">Tres</option>                   
+                </select>
+                <input placeholder="RAM" v-model="ram">
+                <input placeholder="Espacio en disco" v-model="hdd">
+                
+                <button @click="insert">Agregar Tarea</button>
+                <button @click="execute">Ejecutar</button>
+            </div>
+        </div>
+        <div class="tareas">
+            NORMALES
+            <div class="wrap">
+                <ul class="lista" id="lista">
+                    <li v-for="(proceso, index) in procesos">
+                        <a href="#">{{ index + 1 }} {{ proceso.name }} | {{ proceso.ram }} | {{ proceso.hdd }}</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="tareas">
+            EN COLA
+            <div class="wrap">
+                <ul class="lista" id="lista">
+                    <li v-for="(proceso, index) in procesosIniciados">
+                        <a href="#">{{ index + 1 }} {{ proceso.name }} | {{ proceso.ram }} | {{ proceso.hdd }}</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="tareas">
+            TERMINADAS
+            <div class="wrap">
+                <ul class="lista" id="lista">
+                    <li v-for="(proceso, index) in procesosTerminados">
+                        <a href="#">{{ index + 1 }} {{ proceso.name }} | {{ proceso.ram }} | {{ proceso.hdd }}</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+
+    </div>
+    
+    <script src="main.js"></script>
+</body>
+</html>
